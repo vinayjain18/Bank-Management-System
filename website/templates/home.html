@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="table-responsive"><br>
+	<table class="table">
+	<tr>
+		<th>Name</th>
+		<th>email</th>
+		<th>Mobile</th>
+		<th>Aadhar</th>
+		<th>account</th>
+	</tr>
+	{% for data in db %}
+	<tr>
+		<td>{{data.name}}</td>
+		<td>{{data.email}}</td>
+		<td>{{data.mobile}}</td>
+		<td>{{data.aadhar}}</td>
+		<td>{{data.account}}</td>
+	</tr>
+	{% endfor %}
+	</table>
+</div>
+
+<div class="container">
+	{% if user.is_authenticated %}
+	<h2>Welcome {{ user.name }} and {{ user.account }}</h2>
+	{% endif %}
+
+	<h2>Welcome to Apna Bank</h2>
+	<p>A navigation bar is a navigation header that is placed at the top of the page.</p>
+	<!--<button type="button" class="btn btn-primary">Left</button>-->
+	<br>
+	<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+	<br>
+	<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+</div>
+{% endblock %}
