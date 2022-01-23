@@ -3,25 +3,23 @@
 
 {% block content %}
 <style type="text/css">
+	.btn{
+		margin-bottom: 10px;
+	}
 	@media screen and (max-width: 768px) {
 	.btn {
-    display: block;
-    width: auto;
-    float: none;
-}
+		margin-bottom: 0px;
+	}
 </style>
 
 <div class="container">
-	<br>
-	<br>
+	<br><br>
 	{% if user.is_authenticated %}
 	<h2>Which service would you like to use---</h2>
-	<div class="btn-group">
-	<button type="button" class="btn btn-outline-dark" onclick="show('withdraw', 'deposit', 'balance','account_details')">Account Details</button>&nbsp;&nbsp;
-	<button type="button" class="btn btn-outline-dark" onclick="show('withdraw', 'account_details', 'balance', 'deposit')">Deposit</button>&nbsp;&nbsp;
-	<button type="button" class="btn btn-outline-dark" onclick="show('deposit', 'account_details', 'balance', 'withdraw')">Withdraw</button>&nbsp;&nbsp;
-	<button type="button" class="btn btn-outline-dark" onclick="show('deposit', 'account_details', 'withdraw', 'balance')">Balance</button>&nbsp;&nbsp;
-	</div>
+	<button type="button" class="btn btn-outline-dark col-sm-5 offset-sm-2 col-md-5 offset-md-0" onclick="show('withdraw', 'deposit', 'balance','account_details')">Account Details</button>&nbsp;&nbsp;
+	<button type="button" class="btn btn-outline-dark col-sm-5 offset-sm-2 col-md-5 offset-md-0" onclick="show('withdraw', 'account_details', 'balance', 'deposit')">Deposit</button>&nbsp;&nbsp;
+	<button type="button" class="btn btn-outline-dark col-sm-5 offset-sm-2 col-md-5 offset-md-0" onclick="show('deposit', 'account_details', 'balance', 'withdraw')">Withdraw</button>&nbsp;&nbsp;
+	<button type="button" class="btn btn-outline-dark col-sm-5 offset-sm-2 col-md-5 offset-md-0" onclick="show('deposit', 'account_details', 'withdraw', 'balance')">Balance</button>&nbsp;&nbsp;
 	<br><br>
 	{% endif %}
 </div><br><br>
