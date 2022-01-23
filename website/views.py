@@ -18,20 +18,22 @@ def home():
 @views.route('/service', methods = ['POST', 'GET'])
 @login_required
 def service():
-	transs = Transact.query.filter_by(user_id = current_user.id).order_by(sqlalchemy.desc(Transact.balance)).first()
+	trans = Transact.query.filter_by(user_id = current_user.id).order_by(sqlalchemy.desc(Transact.balance)).first()
 	if request.method == 'POST':
 		data = request.form
 		print(data)
 		if 'withdraw' in data:
 			try:
 				withdraw = float(request.form.get('withdraw'))
-				trans = Transact.query.filter_by(user_id = current_user.id).order_by(sqlalchemy.desc(Transact.balance)).first()
-				balance = trans.balance - withdraw
-				transaction = Transact(withdraw = withdraw, balance = balance, user_id = current_user.id)
-				db.session.add(transaction)
-				db.session.commit()
-				flash('Amount withdrawn successfully.', category='success')
-				return redirect(url_for('views.service', user = current_user))
+				if withdraw > trans.balance:
+					flash(f"Your Account has only ₹{trans.balance}", category='error')
+				else:
+					balance = trans.balance - withdraw
+					transaction = Transact(withdraw = withdraw, balance = balance, user_id = current_user.id)
+					db.session.add(transaction)
+					db.session.commit()
+					flash('Amount withdrawn successfully.', category='success')
+					return redirect(url_for('views.service', user = current_user))
 			except:
 				flash("Enter number only.", category='error')
 				return redirect(request.url)
@@ -40,7 +42,6 @@ def service():
 		if 'deposit' in data:
 			try:
 				deposit = float(request.form.get('deposit'))
-				trans = Transact.query.filter_by(user_id = current_user.id).order_by(sqlalchemy.desc(Transact.balance)).first()
 				balance = trans.balance + deposit
 				transaction = Transact(deposit = deposit, balance = balance, user_id = current_user.id)
 				db.session.add(transaction)
@@ -52,7 +53,7 @@ def service():
 				return redirect(request.url)
 
 
-	return render_template('service.html', user = current_user, trans = transs)
+	return render_template('service.html', user = current_user, trans = trans)
 
 
 @views.route('/transaction')

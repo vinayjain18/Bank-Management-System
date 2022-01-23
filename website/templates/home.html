@@ -2,33 +2,13 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<div class="table-responsive"><br>
-	<table class="table">
-	<tr>
-		<th>Name</th>
-		<th>email</th>
-		<th>Mobile</th>
-		<th>Aadhar</th>
-		<th>account</th>
-	</tr>
-	{% for data in db %}
-	<tr>
-		<td>{{data.name}}</td>
-		<td>{{data.email}}</td>
-		<td>{{data.mobile}}</td>
-		<td>{{data.aadhar}}</td>
-		<td>{{data.account}}</td>
-	</tr>
-	{% endfor %}
-	</table>
-</div>
-
-<div class="container">
+<div class="container"><br>
 	{% if user.is_authenticated %}
-	<h2>Welcome {{ user.name }} and {{ user.account }}</h2>
+	<h2>Welcome, {{ user.name }}</h2>
+	{% else %}
+	<h2>Welcome to Apna Bank</h2>
 	{% endif %}
 
-	<h2>Welcome to Apna Bank</h2>
 	<p>A navigation bar is a navigation header that is placed at the top of the page.</p>
 	<!--<button type="button" class="btn btn-primary">Left</button>-->
 	<br>
