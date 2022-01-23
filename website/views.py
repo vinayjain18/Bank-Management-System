@@ -18,7 +18,7 @@ def home():
 @views.route('/service', methods = ['POST', 'GET'])
 @login_required
 def service():
-	trans = Transact.query.filter_by(user_id = current_user.id).order_by(sqlalchemy.desc(Transact.balance)).first()
+	trans = Transact.query.filter_by(user_id = current_user.id).order_by(sqlalchemy.desc(Transact.id)).first()
 	if request.method == 'POST':
 		data = request.form
 		print(data)
