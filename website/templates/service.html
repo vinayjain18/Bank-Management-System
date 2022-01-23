@@ -15,11 +15,13 @@
 	<br>
 	<br>
 	{% if user.is_authenticated %}
-	<h2>Which service would you like to use---</h2><br>
-	<button type="button" class="btn btn-outline-dark navbar-btn" onclick="show('withdraw', 'deposit', 'balance','account_details')">Account Details</button>&nbsp;
-	<button type="button" class="btn btn-outline-dark navbar-btn" onclick="show('withdraw', 'account_details', 'balance', 'deposit')">Deposit</button>&nbsp;
-	<button type="button" class="btn btn-outline-dark navbar-btn" onclick="show('deposit', 'account_details', 'balance', 'withdraw')">Withdraw</button>&nbsp;
-	<button type="button" class="btn btn-outline-dark navbar-btn" onclick="show('deposit', 'account_details', 'withdraw', 'balance')">Balance</button>&nbsp;
+	<h2>Which service would you like to use---</h2>
+	<div class="btn-group">
+	<button type="button" class="btn btn-outline-dark" onclick="show('withdraw', 'deposit', 'balance','account_details')">Account Details</button>&nbsp;&nbsp;
+	<button type="button" class="btn btn-outline-dark" onclick="show('withdraw', 'account_details', 'balance', 'deposit')">Deposit</button>&nbsp;&nbsp;
+	<button type="button" class="btn btn-outline-dark" onclick="show('deposit', 'account_details', 'balance', 'withdraw')">Withdraw</button>&nbsp;&nbsp;
+	<button type="button" class="btn btn-outline-dark" onclick="show('deposit', 'account_details', 'withdraw', 'balance')">Balance</button>&nbsp;&nbsp;
+	</div>
 	<br><br>
 	{% endif %}
 </div><br><br>
