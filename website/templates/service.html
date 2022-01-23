@@ -15,7 +15,7 @@
 	<br>
 	<br>
 	{% if user.is_authenticated %}
-	<h2>Which service would you like to use---</h2>
+	<h2>Which service would you like to use---</h2><br>
 	<button type="button" class="btn btn-outline-dark navbar-btn" onclick="show('withdraw', 'deposit', 'balance','account_details')">Account Details</button>&nbsp;
 	<button type="button" class="btn btn-outline-dark navbar-btn" onclick="show('withdraw', 'account_details', 'balance', 'deposit')">Deposit</button>&nbsp;
 	<button type="button" class="btn btn-outline-dark navbar-btn" onclick="show('deposit', 'account_details', 'balance', 'withdraw')">Withdraw</button>&nbsp;
@@ -29,7 +29,7 @@
 	<h4>Email: {{user.email}}</h4>
 	<h4>Mobile number: {{user.mobile}}</h4>
 	<h4>Aadhar number: {{user.aadhar}}</h4>
-	<h4>Account number: {{user.account}}</h4>
+	<h4>Account number: {{user.account}}</h4><br><br>
 </div>
 
 <div class="container" id="container">
@@ -39,7 +39,7 @@
 	<label for="deposit">Enter Amount (in Rupees):</label>
 	<input type="text" class="form-control" id="deposit" name="deposit" placeholder="Enter Amount"><br>
 	<button type="submit" class="btn btn-primary">Deposit</button>
-	</div>
+	</div><br><br>
 </form>
 
 <form id="withdraw" style="display:none;" method="POST">
@@ -48,11 +48,12 @@
 	<label for="withdraw">Enter Amount (in Rupees):</label>
 	<input type="text" class="form-control" id="withdraw" name="withdraw" placeholder="Enter Amount"><br>
 	<button type="submit" class="btn btn-primary">Withdraw</button>
-	</div>
+	</div><br><br>
 </form>
 </div>
 
 <div class="container">
 	<h2 id="balance" style="display:none;">Your Current Balance is: ₹{{ trans.balance }}</h2>
+	<br><br>
 </div>
 {% endblock %}
