@@ -7,11 +7,10 @@
 	<br>
 	{% if user.is_authenticated %}
 	<h2>Which service would you like to use---</h2>
-	<button type="button" class="btn btn-primary" onclick="show('withdraw', 'deposit', 'balance',
-          'account_details')">Account Details</button>
-	<button type="button" class="btn btn-primary" onclick="show('withdraw', 'account_details', 'balance', 'deposit')">Deposit</button>
-	<button type="button" class="btn btn-primary" onclick="show('deposit', 'account_details', 'balance', 'withdraw')">Withdraw</button>
-	<button type="button" class="btn btn-primary" onclick="show('deposit', 'account_details', 'withdraw', 'balance')">Balance</button>
+	<button type="button" class="btn btn-outline-dark navbar-btn" onclick="show('withdraw', 'deposit', 'balance','account_details')">Account Details</button>&nbsp;
+	<button type="button" class="btn btn-outline-dark navbar-btn" onclick="show('withdraw', 'account_details', 'balance', 'deposit')">Deposit</button>&nbsp;
+	<button type="button" class="btn btn-outline-dark navbar-btn" onclick="show('deposit', 'account_details', 'balance', 'withdraw')">Withdraw</button>&nbsp;
+	<button type="button" class="btn btn-outline-dark navbar-btn" onclick="show('deposit', 'account_details', 'withdraw', 'balance')">Balance</button>&nbsp;
 	<br><br>
 	{% endif %}
 </div><br><br>
