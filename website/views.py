@@ -21,7 +21,6 @@ def service():
 	trans = Transact.query.filter_by(user_id = current_user.id).order_by(sqlalchemy.desc(Transact.id)).first()
 	if request.method == 'POST':
 		data = request.form
-		print(data)
 		if 'withdraw' in data:
 			try:
 				withdraw = float(request.form.get('withdraw'))

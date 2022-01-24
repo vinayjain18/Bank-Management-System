@@ -4,14 +4,25 @@ from os import path
 from flask_login import LoginManager
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
+from flask_mail import Mail
+import os
+
 
 db = SQLAlchemy()
+mail = Mail()
 DB_NAME = "database.db"
 
 def create_app():
 	app = Flask(__name__)
 	app.config['SECRET_KEY'] = 'mini_project'
 	app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+	app.config['MAIL_SERVER']='smtp.gmail.com'
+	app.config['MAIL_PORT'] = 465
+	app.config['MAIL_USERNAME'] = os.environ.get('USER')
+	app.config['MAIL_PASSWORD'] = os.environ.get('PASSWORD')
+	app.config['MAIL_USE_TLS'] = False
+	app.config['MAIL_USE_SSL'] = True
+	mail.init_app(app)
 	db.init_app(app)
 
 	from .views import views

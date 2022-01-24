@@ -2,9 +2,9 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for
 from .models import User, Transact
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_login import current_user, login_required, logout_user, login_user
-from . import db
+from . import db, mail
+from flask_mail import Message
 import random
-
 
 auth = Blueprint('auth', __name__)
 
@@ -82,12 +82,14 @@ def sign_up():
 			new_user = User(name=name, email=email, mobile=mobile, aadhar=aadhar,account=acc, password=generate_password_hash(password1, method='sha256'))
 			db.session.add(new_user)
 			db.session.commit()
-			login_user(new_user, remember=True)
-			new_account = Transact(balance=0, user_id = current_user.id)
+			new_account = Transact(balance=0, user_id = new_user.id)
 			db.session.add(new_account)
 			db.session.commit()
-			flash(f'Signed-Up successfully, Your Account Number:{acc}', category='success')
-			return redirect(url_for('views.home'))
+			msg = Message('Welcome to Apna Bank', sender = ('Apna Bank','bankapna20@gmail.com'), recipients = [email])
+			msg.body = f"Your account has been successfully created with Apna Bank.\n\nBelow is your login details:\nAccount number: {acc}\nPassword: You entered while sign-up."
+			mail.send(msg)
+			flash('Your login details has been sent to registered email.', category='success')
+			return redirect(url_for('auth.login'))
 
 	return render_template('sign_up.html', user = current_user)
 
