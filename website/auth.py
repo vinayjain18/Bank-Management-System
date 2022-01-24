@@ -80,14 +80,14 @@ def sign_up():
 			flash('Password must be greater than 7 characters.', category='error')
 		else:
 			new_user = User(name=name, email=email, mobile=mobile, aadhar=aadhar,account=acc, password=generate_password_hash(password1, method='sha256'))
+			msg = Message('Welcome to Apna Bank', sender = ('Apna Bank','bankapna20@gmail.com'), recipients = [email])
+			msg.body = f"Your account has been successfully created with Apna Bank.\n\nBelow is your login details:\nAccount number: {acc}\nPassword: You entered while sign-up."
+			mail.send(msg)
 			db.session.add(new_user)
 			db.session.commit()
 			new_account = Transact(balance=0, user_id = new_user.id)
 			db.session.add(new_account)
 			db.session.commit()
-			msg = Message('Welcome to Apna Bank', sender = ('Apna Bank','bankapna20@gmail.com'), recipients = [email])
-			msg.body = f"Your account has been successfully created with Apna Bank.\n\nBelow is your login details:\nAccount number: {acc}\nPassword: You entered while sign-up."
-			mail.send(msg)
 			flash('Your login details has been sent to registered email.', category='success')
 			return redirect(url_for('auth.login'))
 
