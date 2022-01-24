@@ -35,9 +35,14 @@ def create_app():
 
 	create_database(app)
 
+
+	class MyModelView(ModelView):
+		def is_accessible(self):
+			return current_user.is_authenticated
+
 	admin = Admin(app)
-	admin.add_view(ModelView(User, db.session))
-	admin.add_view(ModelView(Transact, db.session))
+	admin.add_view(MyModelView(User, db.session))
+	admin.add_view(MyModelView(Transact, db.session))
 
 	login_manager = LoginManager()
 	login_manager.login_view = 'auth.login'
