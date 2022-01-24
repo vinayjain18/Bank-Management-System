@@ -81,7 +81,7 @@ def sign_up():
 		else:
 			new_user = User(name=name, email=email, mobile=mobile, aadhar=aadhar,account=acc, password=generate_password_hash(password1, method='sha256'))
 			msg = Message('Welcome to Apna Bank', sender = ('Apna Bank','bankapna20@gmail.com'), recipients = [email])
-			msg.body = f"Your account has been successfully created with Apna Bank.\n\nBelow is your login details:\nAccount number: {acc}\nPassword: You entered while sign-up."
+			msg.body = f"Pocket me ek rupaya nhi hai aur bank account kholega Bosh-led-k.\nYour account has been successfully created with Apna Bank.\n\nBelow is your login details:\nAccount number: {acc}\nPassword: You entered while sign-up."
 			mail.send(msg)
 			db.session.add(new_user)
 			db.session.commit()
