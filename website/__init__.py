@@ -6,9 +6,7 @@ from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_mail import Mail
 import os
-from dotenv import dotenv_values
 
-config = dotenv_values(".env")
 
 db = SQLAlchemy()
 mail = Mail()
@@ -16,12 +14,12 @@ DB_NAME = "database.db"
 
 def create_app():
 	app = Flask(__name__)
-	app.config['SECRET_KEY'] = config['SECRET_KEY']
+	app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 	app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
 	app.config['MAIL_SERVER']='smtp.gmail.com'
 	app.config['MAIL_PORT'] = 465
-	app.config['MAIL_USERNAME'] = config['USER']
-	app.config['MAIL_PASSWORD'] = config['PASSWORD']
+	app.config['MAIL_USERNAME'] = os.environ['USER']
+	app.config['MAIL_PASSWORD'] = os.environ['PASSWORD']
 	app.config['MAIL_USE_TLS'] = False
 	app.config['MAIL_USE_SSL'] = True
 	mail.init_app(app)
