@@ -7,6 +7,7 @@ from flask_admin.contrib.sqla import ModelView
 from flask_mail import Mail
 import os
 
+#os.environ.get('USER')
 
 db = SQLAlchemy()
 mail = Mail()
@@ -18,8 +19,8 @@ def create_app():
 	app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
 	app.config['MAIL_SERVER']='smtp.gmail.com'
 	app.config['MAIL_PORT'] = 465
-	app.config['MAIL_USERNAME'] = os.environ.get('USER')
-	app.config['MAIL_PASSWORD'] = os.environ.get('PASSWORD')
+	app.config['MAIL_USERNAME'] = 'bankapna20@gmail.com'
+	app.config['MAIL_PASSWORD'] = 'vinayjain'
 	app.config['MAIL_USE_TLS'] = False
 	app.config['MAIL_USE_SSL'] = True
 	mail.init_app(app)
